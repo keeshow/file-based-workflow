@@ -9,3 +9,4 @@
 | 2026-10-10-01 | [workflow](2026-10-10-01/workflow/AGENTS.md) | [changes.md](2026-10-10-01/changes.md) |
 | 2026-10-10-02 | [workflow](2026-10-10-02/workflow/AGENTS.md) | [changes.md](2026-10-10-02/changes.md) |
 | 2026-10-21-01 | [workflow](2026-10-21-01/workflow/AGENTS.md) | [changes.md](2026-10-21-01/changes.md) |
+| 2026-10-21-02 | [workflow](2026-10-21-02/workflow/AGENTS.md) | [changes.md](2026-10-21-02/changes.md) |

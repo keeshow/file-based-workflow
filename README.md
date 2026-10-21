@@ -1,8 +1,8 @@
 # 文件驱动的 Agent 开发工作流
 
-当前版本：2026-10-21-01。
+当前版本：2026-10-21-02。
 
-通过 `AGENTS.md` 约定协作规则，Task 管理当前任务和验收，Handoff 交接项目状态，Note 保存可复用的技术结论。
+通过 `AGENTS.md` 约定协作规则，Task 管理当前任务和验收，Handoff 交接项目状态，Note 保存关键排查过程与可复用的技术结论。
 
 ## 1.工作流引入
 
@@ -22,10 +22,12 @@ workflow/                         # 当前版本的完整工作流框架
     ├── project-rules.md          # 项目专属约束，初始为空，由用户确定内容
     ├── tasks/                    # 独立任务的目标、实施进度、验收结果与遗留问题
     │   └── 00-task.md.example    # Task 示例，展示功能已实现但验收尚未结束的记录方式
-    ├── notes/                    # 可复用的方案、故障分析与技术结论
+    ├── notes/                    # 排查记录（debug-主题.md）与专题笔记（note-主题.md）
+    │   ├── debug-download-memory.md.example # 排查记录示例，展示关键尝试、证据与待验证假设
+    │   └── note-download-memory-validation.md.example    # 专题笔记示例，展示知识、方法与经验的整理方式
     └── references/               # 原始参考资料及其来源、版本信息
 ```
 
-`.example` 文件中的项目、路径和结果均为示例。保留示例文件供查阅，实际 Task 和 handoff 另按项目事实编写；不把示例列入任务索引或当作完成证据。章节可以按需精简。
+`.example` 文件中的项目、路径和结果均为示例。保留示例文件供查阅，实际 Task、Note 和 handoff 另按项目事实编写；不把示例列入任务索引或当作完成证据。章节可以按需精简。
 
 各版本的完整框架快照与修改原因见 [.history/README.md](.history/README.md)。
