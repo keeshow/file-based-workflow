@@ -9,7 +9,10 @@
 **AI 引入**：将下面这段话直接发给实际项目中的AI。
 
 ```text
-将开发工作流 https://github.com/keeshow/file-based-workflow 按照要求引入当前项目。
+仅执行开发工作流引入，不进行代码审查、全仓库扫描、构建或测试。
+将 https://github.com/keeshow/file-based-workflow 仓库中的 workflow/ 目录内容引入当前项目根目录，保持目录结构。
+如果发现同名文件，立即停止并列出冲突文件，等待我的决定。
+没有冲突时直接复制，并在完成后只报告新增或修改的文件。
 ```
 
 **人工引入**：将 [workflow/](workflow/) 内的全部内容复制到实际项目根目录即可使用，复制后 `AGENTS.md`、`handoff.md` 和 `docs/` 均位于项目根目录下。
