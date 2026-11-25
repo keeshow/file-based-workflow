@@ -1,6 +1,14 @@
 # 版本变更记录
 
-按最新版本在上的顺序记录。版本号为 `年后两位.月日.当日序号`，每次推送记录一个版本（可包含多次提交），序号每天从 1 开始，推送时创建同名 Git 标签。
+## [26.1125.2](https://github.com/keeshow/file-based-workflow/tree/26.1125.2)
+
+示例文件分散在项目根目录和各文档目录，引入后与实际文档混在一起；实际项目也无法得知所用的工作流版本，缺少升级方法。
+
+- 示例文件集中到 `docs/examples/`，`00-task.md.example` 改名为 `task.md.example`；`AGENTS.md` 改为首次创建或整理对应文档时应参考这些示例。
+- `docs/tasks/`、`docs/notes/` 补充 `.gitkeep`，保留空目录。
+- `AGENTS.md` 开头记录工作流版本及来源。
+- README 新增“工作流升级”，提供 AI 升级提示词和人工升级方法。
+- 已引入的项目升级时，需删除旧位置的示例文件，改用 `docs/examples/`。
 
 ## [26.1125.1](https://github.com/keeshow/file-based-workflow/tree/26.1125.1)
 
