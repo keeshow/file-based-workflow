@@ -2,7 +2,7 @@
 
 通过 `AGENTS.md` 约定协作规则，Task 管理当前任务和验收，Handoff 交接项目状态，Debug 保存关键排查过程，Note 经用户明确授权整理专题知识。
 
-当前版本：26.1125.3
+当前版本：26.1125.4
 
 ## 1.工作流引入
 
@@ -31,13 +31,13 @@
 仅执行开发工作流升级，不进行代码审查、全仓库扫描、构建或测试。
 读取当前项目 AGENTS.md 开头的工作流版本，对照 https://github.com/keeshow/file-based-workflow 仓库的 CHANGELOG.md，
 列出该版本之后的变更；AGENTS.md 中没有版本号时，先按内容比对判断所基于的版本，无法判断时整体比对。
-只更新来自工作流的通用文件（AGENTS.md 和 docs/examples/ 下的示例），保留项目对 AGENTS.md 的自定义修改；
+只更新来自工作流的通用文件（AGENTS.md、docs/guides/ 下的写法说明和 docs/examples/ 下的示例），保留项目对 AGENTS.md 的自定义修改；
 不修改 handoff.md、docs/project-rules.md、docs/tasks/、docs/notes/、docs/references/ 等项目自有内容。
 涉及文件移动、删除或与项目修改冲突时，先列出处理方案并等待我的决定。
 完成后报告升级前后的版本号，以及新增、修改、删除的文件。
 ```
 
-**人工升级**：按 CHANGELOG 中的变更说明，用新版 [workflow/](workflow/) 中的 `AGENTS.md` 和 `docs/examples/` 替换项目中的对应文件，并合并项目自行修改过的规则；变更说明涉及文件移动或删除时一并处理。项目自有的状态、任务和规则文档不随升级替换。
+**人工升级**：按 CHANGELOG 中的变更说明，用新版 [workflow/](workflow/) 中的 `AGENTS.md`、`docs/guides/` 和 `docs/examples/` 替换项目中的对应文件，并合并项目自行修改过的规则；变更说明涉及文件移动或删除时一并处理。项目自有的状态、任务和规则文档不随升级替换。
 
 ## 3.工作流简介
 
@@ -50,13 +50,14 @@ workflow/                         # 当前版本的完整工作流
     ├── project-rules.md          # 项目专属约束，初始为空，由用户确定内容
     ├── tasks/                    # 独立任务的目标、实施进度、验收结果与遗留问题
     ├── notes/                    # 排查记录与专题笔记，专题笔记须用户明确授权
+    ├── guides/                   # 各类文档的具体写法，Agent 在对应时机按需阅读
     ├── examples/                 # Task、Handoff、Debug、Note 及项目规则的写法示例
     └── references/               # 原始参考资料及其来源、版本信息
 ```
 
 `docs/README.md` 按主题或文档类型组织重要文档，每项包含相对链接和一句用途说明；文档新增、移动或删除时维护入口，不重复记录任务进度或验收结果。维护要求见 [AGENTS.md](workflow/AGENTS.md) 第 2、6 节。
 
-写法示例集中在 `docs/examples/`，Agent 首次创建或整理对应文档时参考其结构和写法；示例中的项目、路径和结果均为虚构，不作为实际状态或验收证据。
+`AGENTS.md` 只保留每次会话都需要的核心规则，各类文档的具体写法放在 `docs/guides/`，由 Agent 在创建或更新对应文档前阅读，以减少每次会话加载的内容。写法示例集中在 `docs/examples/`，Agent 首次创建或整理对应文档时参考其结构和写法；示例中的项目、路径和结果均为虚构，不作为实际状态或验收证据。
 
 版本变更见 [CHANGELOG.md](CHANGELOG.md)。
 

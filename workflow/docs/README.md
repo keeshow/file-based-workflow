@@ -3,6 +3,7 @@
 - [项目约束](project-rules.md)：项目专属规则与操作限制。
 - [任务文档](tasks/)：任务目标、实施进度与验收结果。
 - [技术记录](notes/)：排查记录与专题笔记。
+- [写法说明](guides/)：Task、Handoff、Debug、Note 及文档维护的具体写法。
 - [写法示例](examples/)：Task、Handoff、Debug、Note 及项目规则的写法示例，内容均为虚构。
 - [参考资料](references/)：原始手册、协议与外部资料。
 

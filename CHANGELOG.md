@@ -1,5 +1,14 @@
 # 版本变更记录
 
+## [26.1125.4](https://github.com/keeshow/file-based-workflow/tree/26.1125.4)
+
+`AGENTS.md` 约 2.1 万字，每次会话都要完整加载，其中多数是各类文档的具体写法，只在编写对应文档时才用到；部分规则在多个章节重复出现。
+
+- `AGENTS.md` 只保留每次会话都需要的核心规则和全部“必须”“禁止”条款，篇幅减少约三分之一；合并专题笔记授权、信息准确、项目规则加载等重复条款，Handoff 与项目约束章节不再细分小节。
+- 新增 `docs/guides/`：`task.md`、`handoff.md`、`notes.md`、`maintenance.md`，内容沿用原规则；`AGENTS.md` 在创建或更新对应文档前指明需阅读的文件。
+- README 目录树、升级提示词范围和 `docs/README.md` 导航同步加入 `docs/guides/`。
+- 已引入的项目升级时，需新增 `docs/guides/` 并替换 `AGENTS.md`。
+
 ## [26.1125.3](https://github.com/keeshow/file-based-workflow/tree/26.1125.3)
 
 工作流预置空的 `handoff.md` 和 `docs/project-rules.md`，与“不生成空白占位文档”的规则看似矛盾；部分 Agent 工具也不会自动读取 `AGENTS.md`。
