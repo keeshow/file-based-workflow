@@ -1,5 +1,12 @@
 # 版本变更记录
 
+## [26.1125.3](https://github.com/keeshow/file-based-workflow/tree/26.1125.3)
+
+工作流预置空的 `handoff.md` 和 `docs/project-rules.md`，与“不生成空白占位文档”的规则看似矛盾；部分 Agent 工具也不会自动读取 `AGENTS.md`。
+
+- 明确不创建空白占位文档的约束对象是 Agent，预置文件及 `.gitkeep` 不受此限制；`docs/project-rules.md` 为空时视为未定义额外约束，Agent 不得自行补写条款。
+- 所用工具不自动加载 `AGENTS.md` 时，在其入口文件中引用，不复制内容、不覆盖已有内容；AI 引入提示词与人工引入说明同步补充。
+
 ## [26.1125.2](https://github.com/keeshow/file-based-workflow/tree/26.1125.2)
 
 示例文件分散在项目根目录和各文档目录，引入后与实际文档混在一起；实际项目也无法得知所用的工作流版本，缺少升级方法。
