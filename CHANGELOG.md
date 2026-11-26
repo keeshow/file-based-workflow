@@ -1,5 +1,15 @@
 # 版本变更记录
 
+## [26.1126.2](https://github.com/keeshow/file-based-workflow/tree/26.1126.2)
+
+实际项目中，Agent 将验证环境、截图和固件备份存放在 `.git/` 下，虽未进入版本库，却使项目目录增大到 300 MB 以上且难以发现；用户只是询问方案是否可行，Agent 也直接开始执行。工作流此前只要求注明临时文件的保存限制，没有规定本机产物的存放位置，也未区分提问与指令。
+
+- `AGENTS.md` 第 5 节新增“本机产物”：截图、临时脚本、补丁、修改前副本、测试输出及验证用运行环境统一放在项目根目录的 `.agent-local/`，通过 `.git/info/exclude` 忽略，不修改 `.gitignore`；禁止在 `.git/` 下存放任何文件；需长期保留的验收证据由用户确定保存位置。
+- 第 2 节目录树及职责说明加入 `.agent-local/`；第 9 节任务结束时报告本次新增的本机产物及占用空间，是否清理由用户决定。
+- 第 1 节新增区分提问与指令：用户提问、征求意见或讨论方案时只作答和分析，明确要求执行后再实施。
+- `docs/guides/maintenance.md` 与 README 简介同步说明 `.agent-local/`。
+- 已引入的项目升级时，替换 `AGENTS.md` 和 `docs/guides/maintenance.md`；已存放在 `.git/` 下的本机产物需另行迁移或清理。
+
 ## [26.1126.1](https://github.com/keeshow/file-based-workflow/tree/26.1126.1)
 
 `handoff.md` 需经 `AGENTS.md` 指引才会被读取，放在项目根目录并不能让 Agent 更早发现，反而增加根目录文件；标题“文件驱动”未体现工作流以文件为依据。
