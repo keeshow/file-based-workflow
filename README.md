@@ -1,8 +1,8 @@
-# 文件驱动的 Agent 开发工作流
+# 基于文件驱动的 Agent 开发工作流
 
 通过 `AGENTS.md` 约定协作规则，Task 管理当前任务和验收，Handoff 交接项目状态，Debug 保存关键排查过程，Note 经用户明确授权整理专题知识。
 
-当前版本：26.1125.5
+当前版本：26.1126.1
 
 ## 1.工作流引入
 
@@ -11,13 +11,13 @@
 ```text
 仅执行开发工作流引入，不进行代码审查、全仓库扫描、构建或测试。
 将 https://github.com/keeshow/file-based-workflow 仓库中 workflow/ 目录下的内容复制到当前项目根目录，
-不要在当前项目中创建 workflow/ 目录。引入后，AGENTS.md、handoff.md 和 docs/ 必须直接位于当前项目根目录。
+不要在当前项目中创建 workflow/ 目录。引入后，AGENTS.md 和 docs/ 必须直接位于当前项目根目录。
 如果发现同名文件，立即停止并列出冲突文件，等待我的决定。
 没有冲突时直接复制。如果你不会在新会话中自动读取 AGENTS.md，在你所用的入口文件中引用它，不复制其内容；
 入口文件已存在时追加引用，不覆盖原有内容。完成后只报告新增或修改的文件。
 ```
 
-**人工引入**：将 [workflow/](workflow/) 内的全部内容复制到实际项目根目录即可使用，复制后 `AGENTS.md`、`handoff.md` 和 `docs/` 均位于项目根目录下。所用 Agent 工具不自动读取 `AGENTS.md` 时，在该工具约定的入口文件中引用它。
+**人工引入**：将 [workflow/](workflow/) 内的全部内容复制到实际项目根目录即可使用，复制后 `AGENTS.md` 和 `docs/` 均位于项目根目录下。所用 Agent 工具不自动读取 `AGENTS.md` 时，在该工具约定的入口文件中引用它。
 
 两种引入方式遇到已有同名文件时，先比较、合并，保留项目原有规则、文档和状态，勿直接用工作流文件覆盖已有内容。
 
@@ -26,9 +26,9 @@
 ```text
 workflow/                         # 当前版本的完整工作流
 ├── AGENTS.md                     # 通用协作、任务管理、验证与文档维护规范
-├── handoff.md                    # 项目状态与交接快照，初始为空
 └── docs/                         # 项目文档目录
     ├── README.md                 # 重要文档导航索引，预置通用目录入口
+    ├── handoff.md                # 项目状态与交接快照，初始为空
     ├── project-rules.md          # 项目专属约束，初始为空，由用户确定内容
     ├── tasks/                    # 独立任务的目标、实施进度、验收结果与遗留问题
     ├── notes/                    # 排查记录与专题笔记，专题笔记须用户明确授权
@@ -49,7 +49,7 @@ workflow/                         # 当前版本的完整工作流
 
 建议在约 2～3 次上下文压缩后，选择阶段完成或其他安全交接点开启新对话。次数仅供参考，应根据任务和实际表现调整。
 
-切换前通知 Agent 检查进度并更新 Task、相关 Debug 及必要的 `handoff.md`，保存关键证据，记录未提交修改及下一步。
+切换前通知 Agent 检查进度并更新 Task、相关 Debug 及必要的 `docs/handoff.md`，保存关键证据，记录未提交修改及下一步。
 
 开启新对话后，Agent 会通过 `AGENTS.md` 或其入口文件加载规则；未自动加载时，提醒 Agent 先阅读 `AGENTS.md`。接续已有任务时，可明确对应 Task，核对实际状态后继续。
 
@@ -64,7 +64,7 @@ workflow/                         # 当前版本的完整工作流
 读取当前项目 AGENTS.md 开头的工作流版本，对照 https://github.com/keeshow/file-based-workflow 仓库的 CHANGELOG.md，
 列出该版本之后的变更；AGENTS.md 中没有版本号时，先按内容比对判断所基于的版本，无法判断时整体比对。
 只更新来自工作流的通用文件（AGENTS.md、docs/guides/ 下的写法说明和 docs/examples/ 下的示例），保留项目对 AGENTS.md 的自定义修改；
-不修改 handoff.md、docs/project-rules.md、docs/tasks/、docs/notes/、docs/references/ 等项目自有内容。
+不修改 docs/handoff.md（旧版本位于根目录）、docs/project-rules.md、docs/tasks/、docs/notes/、docs/references/ 等项目自有内容。
 涉及文件移动、删除或与项目修改冲突时，先列出处理方案并等待我的决定。
 完成后报告升级前后的版本号，以及新增、修改、删除的文件。
 ```

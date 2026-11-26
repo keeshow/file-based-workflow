@@ -1,5 +1,13 @@
 # 版本变更记录
 
+## [26.1126.1](https://github.com/keeshow/file-based-workflow/tree/26.1126.1)
+
+`handoff.md` 需经 `AGENTS.md` 指引才会被读取，放在项目根目录并不能让 Agent 更早发现，反而增加根目录文件；标题“文件驱动”未体现工作流以文件为依据。
+
+- `handoff.md` 移至 `docs/handoff.md`，项目根目录只保留 `AGENTS.md` 和 `docs/`；`AGENTS.md`、`docs/guides/handoff.md`、`docs/README.md` 导航及 README 引入、目录树、多对话建议和升级提示词同步更新路径。
+- README 标题改为“基于文件驱动的 Agent 开发工作流”。
+- 已引入的项目升级时，需将根目录的 `handoff.md` 移至 `docs/`，内容不变，并替换 `AGENTS.md` 和 `docs/guides/handoff.md`。
+
 ## [26.1125.5](https://github.com/keeshow/file-based-workflow/tree/26.1125.5)
 
 README 中“工作流升级”位于简介之前，初次了解工作流的读者先看到升级说明；多对话使用建议中的“多 Agent 交接”容易被理解为多个 Agent 并行开发。
