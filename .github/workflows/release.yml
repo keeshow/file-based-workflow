@@ -1,19 +1,29 @@
-# 推送版本标签时，打包 Skill 并发布到 GitHub Release
+# 推送版本标签时，打包 Skill 并发布到 GitHub Release；也可手动运行，为已有标签补发
 name: 发布 Skill
 
 on:
   push:
     tags:
       - '[0-9]*.[0-9]*.[0-9]*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要发布的已有版本标签，如 26.1127.7'
+        required: true
 
 permissions:
   contents: write
+
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ env.TAG }}
 
       - name: 打包 Skill
         run: |
@@ -22,12 +32,12 @@ jobs:
 
       - name: 提取本版本的变更说明
         run: |
-          awk -v tag="$GITHUB_REF_NAME" '
+          awk -v tag="$TAG" '
             /^## \[/ { p = (index($0, "## [" tag "]") == 1); next }
             p
           ' CHANGELOG.md > release-notes.md
           if [ ! -s release-notes.md ]; then
-            echo "CHANGELOG.md 中未找到 $GITHUB_REF_NAME 的记录" >&2
+            echo "CHANGELOG.md 中未找到 $TAG 的记录" >&2
             exit 1
           fi
 
@@ -35,6 +45,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" file-based-workflow-skill.zip \
-            --title "$GITHUB_REF_NAME" \
+          gh release create "$TAG" file-based-workflow-skill.zip \
+            --title "$TAG" \
             --notes-file release-notes.md
