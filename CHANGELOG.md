@@ -1,5 +1,14 @@
 # 版本变更记录
 
+## [26.1127.3](https://github.com/keeshow/file-based-workflow/tree/26.1127.3)
+
+Handoff、Task、Debug 的参考篇幅只写在 `docs/guides/` 中，Agent 未阅读写法说明时无法得知，防止文档膨胀的关键边界随之失效；也无法确认 Agent 是否按时阅读了写法说明。`docs/guides/maintenance.md` 中的文档分工仍是旧说法，与 `AGENTS.md` 不一致。
+
+- `AGENTS.md` 第 4、6、7 节直接写明 Task 约 4000 字、Debug 约 6000 字、Handoff 3000 字以内的参考篇幅，超出时先检查整理。
+- 第 9 节任务结束时报告本次创建或更新文档时阅读的 `docs/guides/` 文件。
+- `docs/guides/maintenance.md` 的文档分工改为引用 `AGENTS.md` 第 6 节，不再重复旧说法。
+- 已引入的项目升级时，替换 `AGENTS.md` 和 `docs/guides/maintenance.md`。
+
 ## [26.1127.2](https://github.com/keeshow/file-based-workflow/tree/26.1127.2)
 
 实际项目中，文档普遍用“／”串联多个对象，一句话包含多个事实，难以阅读；专题笔记没有记录授权来源，事后无法判断是否经用户同意；Debug 与 Note 只按主题命名，难以引用和统计数量；工作流中“用户要求时另作归档”的规则产生了与 Task 混放的归档文件，而修改经过本可由 Git 追溯。
