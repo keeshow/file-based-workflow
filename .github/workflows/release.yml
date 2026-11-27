@@ -1,0 +1,40 @@
+# 推送版本标签时，打包 Skill 并发布到 GitHub Release
+name: 发布 Skill
+
+on:
+  push:
+    tags:
+      - '[0-9]*.[0-9]*.[0-9]*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 打包 Skill
+        run: |
+          cd skills
+          zip -r ../file-based-workflow-skill.zip file-based-workflow
+
+      - name: 提取本版本的变更说明
+        run: |
+          awk -v tag="$GITHUB_REF_NAME" '
+            /^## \[/ { p = (index($0, "## [" tag "]") == 1); next }
+            p
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "CHANGELOG.md 中未找到 $GITHUB_REF_NAME 的记录" >&2
+            exit 1
+          fi
+
+      - name: 发布 Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" file-based-workflow-skill.zip \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file release-notes.md

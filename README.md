@@ -4,29 +4,49 @@
 
 本项目是一套供 Agent 遵循的文件约定和协作规范，不是任务编排引擎，不需要安装或运行服务。
 
-当前版本：26.1127.6
+当前版本：26.1127.7
 
-## 1.工作流引入
+## 1.快速开始
 
-**AI 引入**：将下面这段话直接发给实际项目中的AI。
+### 方式一：安装 Skill（推荐）
+
+Skill 只需在每台电脑上安装一次，之后在任意项目中都可以使用。Skill 压缩包随每个版本自动发布：[下载 file-based-workflow-skill.zip](https://github.com/keeshow/file-based-workflow/releases/latest/download/file-based-workflow-skill.zip)。
+
+| 所用工具 | 安装方法 |
+| --- | --- |
+| Claude 网页版、桌面版的聊天界面 | 下载压缩包，在设置的 Skills 管理处上传 |
+| Claude Code、Codex、WorkBuddy 等 Agent 工具 | 将下面这段话发给 AI，由 AI 自行安装 |
+| 手动安装 | 解压后将 `file-based-workflow` 文件夹放入所用工具的 Skill 目录，如 Claude Code 为 `~/.claude/skills/` |
 
 ```text
-仅执行开发工作流引入，不进行代码审查、全仓库扫描、构建或测试。
-将 https://github.com/keeshow/file-based-workflow 仓库中 workflow/ 目录下的内容复制到当前项目根目录，
-不要在当前项目中创建 workflow/ 目录。引入后，AGENTS.md 和 docs/ 必须直接位于当前项目根目录。
-如果发现同名文件，立即停止并列出冲突文件，等待我的决定。
-没有冲突时直接复制。如果你不会在新会话中自动读取 AGENTS.md，在你所用的入口文件中引用它，不复制其内容；
-入口文件已存在时追加引用，不覆盖原有内容。完成后只报告新增或修改的文件。
+从 https://github.com/keeshow/file-based-workflow/releases/latest/download/file-based-workflow-skill.zip 下载 Skill 压缩包，
+解压后将其中的 file-based-workflow 文件夹安装为你的用户级 Skill，安装位置按你所用工具的约定。完成后告诉我安装路径。
 ```
 
-**人工引入**：将 [workflow/](workflow/) 内的全部内容复制到实际项目根目录即可使用，复制后 `AGENTS.md` 和 `docs/` 均位于项目根目录下。所用 Agent 工具不自动读取 `AGENTS.md` 时，在该工具约定的入口文件中引用它。
+安装后，在项目中对 AI 说：
 
-两种引入方式遇到已有同名文件时，先比较、合并，保留项目原有规则、文档和状态，勿直接用工作流文件覆盖已有内容。
+- “引入文件工作流”：把工作流复制到当前项目。
+- “升级文件工作流”：升级到最新版本，保留项目自己的文档和修改。
+- “检查文件工作流”：运行文档校验并报告结果。
+
+说全称“文件驱动工作流”也可以；只说“工作流”等泛称时不会触发，以免与项目中的其他流程混淆。
+
+### 方式二：不安装 Skill
+
+将下面这句话发给 AI，AI 会按 Skill 中的步骤执行：
+
+```text
+阅读 https://raw.githubusercontent.com/keeshow/file-based-workflow/main/skills/file-based-workflow/SKILL.md，按其中的“引入”步骤，把文件工作流引入当前项目。
+```
+
+### 方式三：人工复制
+
+将 [workflow/](workflow/) 内的全部内容复制到项目根目录，复制后 `AGENTS.md` 和 `docs/` 均位于项目根目录下。所用 Agent 工具不自动读取 `AGENTS.md` 时，在该工具约定的入口文件中引用它。遇到已有同名文件时，先比较、合并，保留项目原有的规则、文档和状态，不直接覆盖。
 
 ## 2.工作流简介
 
 ```text
-workflow/                         # 当前版本的完整工作流
+workflow/                         # 当前版本的完整工作流，引入时复制到项目根目录
 ├── AGENTS.md                     # 通用协作、任务管理、验证与文档维护规范
 └── docs/                         # 项目文档目录
     ├── README.md                 # 重要文档导航索引，预置通用目录入口
@@ -50,6 +70,8 @@ Agent 更新文档后，在任务结束前运行 `docs/scripts/check-docs.py`，
 
 Agent 在开发和验证中产生的截图、临时脚本、测试输出等本机产物，统一放在项目根目录的 `.agent-local/`，通过 `.git/info/exclude` 在本机忽略，不进入版本库，也不放入 `.git/` 目录；是否清理由用户决定。
 
+`skills/file-based-workflow/` 是用于引入、升级和检查的 Skill，不复制到项目中；引入和升级的具体步骤只在其 `SKILL.md` 中维护。
+
 版本变更见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 3.多对话使用建议
@@ -64,22 +86,18 @@ Agent 在开发和验证中产生的截图、临时脚本、测试输出等本�
 
 ## 4.工作流升级
 
-实际项目所用的工作流版本记录在其 `AGENTS.md` 开头的“工作流版本”中，升级时对照 [CHANGELOG.md](CHANGELOG.md) 查看该版本之后的变更。
+实际项目所用的工作流版本记录在其 `AGENTS.md` 开头的“工作流版本”中，各版本的变更见 [CHANGELOG.md](CHANGELOG.md)。
 
-**AI 升级**：将下面这段话直接发给实际项目中的AI。
+- **已安装 Skill**：对 AI 说“升级文件工作流”。
+- **未安装 Skill**：将下面这句话发给 AI。
 
 ```text
-仅执行开发工作流升级，不进行代码审查、全仓库扫描、构建或测试。
-读取当前项目 AGENTS.md 开头的工作流版本，对照 https://github.com/keeshow/file-based-workflow 仓库的 CHANGELOG.md，
-列出该版本之后的变更；AGENTS.md 中没有版本号时，先按内容比对判断所基于的版本，无法判断时整体比对。
-只更新来自工作流的通用文件（AGENTS.md、docs/guides/ 下的写法说明、docs/examples/ 下的示例和 docs/scripts/ 下的脚本），保留项目对 AGENTS.md 的自定义修改；
-不修改 docs/handoff.md（旧版本位于根目录）、docs/project-rules.md、docs/tasks/、docs/notes/、docs/references/ 等项目自有内容。
-涉及文件移动、删除、在项目目录中新增预置文件（如任务总览、索引），或因此需要修改项目文档中的路径时，
-以及与项目修改冲突时，先列出处理方案并等待我的决定。
-完成后报告升级前后的版本号，以及新增、修改、删除的文件。
+阅读 https://raw.githubusercontent.com/keeshow/file-based-workflow/main/skills/file-based-workflow/SKILL.md，按其中的“升级”步骤，升级当前项目的文件工作流。
 ```
 
-**人工升级**：按 CHANGELOG 中的变更说明，用新版 [workflow/](workflow/) 中的 `AGENTS.md`、`docs/guides/`、`docs/examples/` 和 `docs/scripts/` 替换项目中的对应文件，并合并项目自行修改过的规则；变更说明涉及文件移动或删除时一并处理。项目自有的状态、任务和规则文档不随升级替换。
+- **人工升级**：按 CHANGELOG 中的变更说明，用新版 [workflow/](workflow/) 中的 `AGENTS.md`、`docs/guides/`、`docs/examples/` 和 `docs/scripts/` 替换项目中的对应文件，并合并项目自行修改过的规则；变更说明涉及文件移动或删除时一并处理。项目自有的状态、任务和规则文档不随升级替换。
+
+升级只更新来自工作流的通用文件。涉及文件移动、删除、新增预置文件或与项目修改冲突时，AI 会先列出处理方案，等待你的决定。
 
 ## 5.许可证
 

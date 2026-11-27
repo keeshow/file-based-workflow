@@ -1,8 +1,18 @@
 # 版本变更记录
 
+## [26.1127.7](https://github.com/keeshow/file-based-workflow/tree/26.1127.7)
+
+引入和升级要复制 README 中的大段提示词，对不熟悉 Agent 的用户不友好；两段提示词与实际步骤分散维护，容易不一致。
+
+- 新增 Skill `skills/file-based-workflow/SKILL.md`：负责引入、升级和检查，不复制到项目中，工作流规则仍由项目中的 `AGENTS.md` 生效。用户提到“文件工作流”（全称“文件驱动工作流”，英文名 file-based-workflow）并要求引入、安装、升级或检查时触发；只说“工作流”等泛称时不触发。
+- Skill 执行时从仓库获取最新版本标签；升级时下载项目原版本比对，保留项目对 `AGENTS.md` 的修改，比对时忽略换行符差异；遇到冲突、文件移动、改名或改编号时先列出方案，等待用户决定。
+- 新增 `.github/workflows/release.yml`：推送版本标签时，自动将 Skill 打包为 `file-based-workflow-skill.zip`，连同 CHANGELOG 中该版本的说明发布到 GitHub Release。
+- README 第 1 节改为“快速开始”，提供安装 Skill、不安装 Skill（让 AI 阅读线上 SKILL.md）和人工复制三种方式；第 4 节升级同步简化。引入和升级的具体步骤只在 `SKILL.md` 中维护。
+- 已引入的项目无需替换文件，只需更新 `AGENTS.md` 开头的工作流版本；之后可安装 Skill，用“升级文件工作流”升级。
+
 ## [26.1127.6](https://github.com/keeshow/file-based-workflow/tree/26.1127.6)
 
-外部评审指出：仓库主打可复用，却没有许可证，使用者无法确认能否合法使用；README 首段未说明“工作流”的含义，容易被理解为任务编排引擎；规则只写了“不盲目重复尝试”，Agent 实际执行中仍可能反复尝试同一方法。
+外部评审 Muse 指出：仓库主打可复用，却没有许可证，使用者无法确认能否合法使用；README 首段未说明“工作流”的含义，容易被理解为任务编排引擎；规则只写了“不盲目重复尝试”，Agent 实际执行中仍可能反复尝试同一方法。
 
 - 新增 `LICENSE`，以 MIT 许可证发布；README 新增“许可证”一节。
 - README 首段说明本项目是供 Agent 遵循的文件约定和协作规范，不是任务编排引擎，不需要安装或运行服务。
