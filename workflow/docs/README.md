@@ -4,7 +4,8 @@
 - [项目交接](handoff.md)：项目当前状态与交接快照。
 - [任务总览](tasks/README.md)：全部 Task 的编号、链接与状态。
 - [排查记录与专题笔记索引](notes/README.md)：全部 Debug 与 Note 的链接、类型与状态。
-- [写法说明](guides/)：Task、Handoff、Debug、Note 及文档维护的具体写法。
+- [写法说明](guides/)：Task、Handoff、Debug、Note 及文档维护的具体写法，以及文档校验的运行说明。
+- [校验脚本](scripts/check-docs.py)：检查文档命名、状态、索引和链接是否一致。
 - [写法示例](examples/)：Task、Handoff、Debug、Note 及项目规则的写法示例，内容均为虚构。
 - [参考资料](references/)：原始手册、协议与外部资料。
 

@@ -1,5 +1,16 @@
 # 版本变更记录
 
+## [26.1127.5](https://github.com/keeshow/file-based-workflow/tree/26.1127.5)
+
+实际项目中，Task 与索引状态不一致、Debug 编号不统一、链接失效、文档超出参考篇幅等问题都靠人工发现；规则写在文档里，Agent 是否遵守无从检查。外部评审 Muse 提供了一份校验脚本 validate.py，本版本在其基础上改写，适配当前规则，并修正了在实际项目中出现的误报（中文文件名、链接中的 `%20`、索引文件被当作 Task 等）。
+
+- 新增 `docs/scripts/check-docs.py`：只读检查文档的命名、编号、状态、索引、Handoff 状态、链接、篇幅和疑似密钥；只使用 Python 标准库，需要 Python 3.7 及以上；退出码 0 通过、1 有错误、2 只有警告、3 脚本无法完成检查。
+- 新增 `docs/guides/check.md`：运行方式、开关写法、各项检查的含义及结果处理。
+- `AGENTS.md` 第 9 节：本次更新了 `docs/` 下的文档时，结束前运行校验并在报告中说明结果；缺少 Python 等运行环境时通知用户，用户同意后才可安装；脚本出错时照常结束任务，不修改脚本、不自行关闭校验。第 2 节加入 `docs/scripts/`。
+- 开关写在 `docs/project-rules.md` 的“文档校验”一节，未写时视为启用；`docs/examples/project-rules.md.example` 同步。
+- `docs/guides/task.md`、`docs/guides/notes.md` 明确状态行以“状态：”开头。
+- 已引入的项目升级时，替换 `AGENTS.md`、`docs/guides/task.md`、`docs/guides/notes.md` 及示例，新增 `docs/scripts/` 和 `docs/guides/check.md`；已有文档不符合命名规则的，经用户确认后再调整。
+
 ## [26.1127.4](https://github.com/keeshow/file-based-workflow/tree/26.1127.4)
 
 外部评审指出：`AGENTS.md` 要求 Handoff 不写时间戳，写法说明又要求文件开头记录最后更新时间，字面矛盾；被放弃或被新方案取代的 Task 没有合法终态，只能长期挂在 `PAUSED` 或被误标为 `DONE`；参考资料、网页、日志等外部内容中夹带的指令可能被 Agent 当作要求执行。

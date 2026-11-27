@@ -2,7 +2,7 @@
 
 > 适用范围：本仓库。本文仅规定通用 Agent 开发工作流；项目专属约束统一放在 `docs/project-rules.md`。
 >
-> 工作流版本：26.1127.4，来源：https://github.com/keeshow/file-based-workflow
+> 工作流版本：26.1127.5，来源：https://github.com/keeshow/file-based-workflow
 
 ## 1. 基本原则
 
@@ -28,6 +28,7 @@ project/
 │   ├── notes/           # 排查记录与专题笔记；README.md 为索引
 │   ├── guides/          # 各类文档的具体写法，按需阅读
 │   ├── examples/        # Task、Handoff、Debug、Note 及项目规则的写法示例
+│   ├── scripts/         # 文档一致性校验脚本
 │   └── references/      # 原始手册、协议及外部资料
 └── ...                  # 项目代码与配置
 ```
@@ -40,8 +41,9 @@ project/
 - `docs/notes/`：排查记录（`debug-NNN-主题.md`）与专题笔记（`note-NNN-主题.md`），两者共用一个编号序列，编号唯一、稳定；生成条件及权限见第 6 节。`docs/notes/README.md` 为索引，每份 Debug 或 Note 一行，记录文档链接、类型、状态和关联 Task。
 - `docs/references/`：原始参考资料及来源、版本信息；分析结论维护在相关 Task、Debug 或已有技术文档中。
 - `docs/README.md`：重要文档及上述索引的链接与用途说明，不写状态或进展。
-- `docs/guides/`：Task、Handoff、Debug、Note 及文档维护的具体写法，在各节指明的时机阅读。
+- `docs/guides/`：Task、Handoff、Debug、Note 及文档维护的具体写法，以及文档校验的运行说明，在各节指明的时机阅读。
 - `docs/examples/`：写法示例（`.example` 文件），首次创建或整理对应文档时参考其结构和写法。示例内容均为虚构，不属于实际项目状态、任务或验收证据，不纳入任务编号和状态统计，不直接复制示例结论。
+- `docs/scripts/check-docs.py`：只读检查文档的命名、编号、状态、索引和链接是否一致，运行时机见第 9 节。Agent 不修改该脚本。
 
 缺失的文档或目录仅在实际需要使用时创建；Agent 不创建空白占位文档。工作流预置的 `docs/handoff.md`、`docs/project-rules.md`、`docs/tasks/README.md`、`docs/notes/README.md` 及目录中的 `.gitkeep` 属于预置入口，不视为 Agent 生成的空文件；预置文件为空时的处理见第 7、10 节。
 
@@ -149,6 +151,12 @@ Agent 在**已授权任务范围内**自行判断并执行以下操作，不需�
 
 ## 9. 任务结束时的输出
 
+本次创建或更新了 `docs/` 下的文档时，结束前运行文档校验 `docs/scripts/check-docs.py`；`docs/project-rules.md` 中“文档校验”设为关闭时不运行。首次运行或结果异常时，先阅读 `docs/guides/check.md`。
+
+- 报告的错误属于本次任务或自主维护范围的，修正后重新运行；需要用户决定或无法判断的，在报告中列出。
+- 因缺少 Python 等运行环境而无法运行时，通知用户缺少什么及建议的安装方式；用户同意后可以安装，未经同意不安装或修改运行环境。
+- 脚本出错或无法运行时，说明原因后照常结束任务；不修改脚本，不自行关闭校验。
+
 简要报告：
 
 1. 完成内容及主要改动文件。
@@ -156,6 +164,7 @@ Agent 在**已授权任务范围内**自行判断并执行以下操作，不需�
 3. 当前任务状态、阻塞和建议的下一步。
 4. 本次创建或更新的文档（如有），以及为此阅读的 `docs/guides/` 文件。
 5. 本次在 `.agent-local/` 新增的内容及占用空间（如有）；是否清理由用户决定，Agent 不自行删除。
+6. 文档校验的结果及处理情况，或未运行的原因。
 
 不以文档更新代替实现和验证；不生成无意义的总结。
 

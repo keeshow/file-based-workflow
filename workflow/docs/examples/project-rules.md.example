@@ -30,7 +30,12 @@
 - 允许执行 `make` 与 `make test`。
 - 禁止自动部署或修改服务器配置；需要实机验证时说明步骤，由用户执行并反馈结果。
 
-## 6. 参考文档
+## 6. 文档校验
+
+- 状态：启用
+- 命令：python3 docs/scripts/check-docs.py
+
+## 7. 参考文档
 
 - 配置结构与存储格式：`docs/references/config-format.md`，仅在修改配置参数时阅读。
 
