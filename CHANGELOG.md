@@ -1,5 +1,15 @@
 # 版本变更记录
 
+## [26.1127.2](https://github.com/keeshow/file-based-workflow/tree/26.1127.2)
+
+实际项目中，文档普遍用“／”串联多个对象，一句话包含多个事实，难以阅读；专题笔记没有记录授权来源，事后无法判断是否经用户同意；Debug 与 Note 只按主题命名，难以引用和统计数量；工作流中“用户要求时另作归档”的规则产生了与 Task 混放的归档文件，而修改经过本可由 Git 追溯。
+
+- `AGENTS.md` 第 6 节新增“面向人阅读”，`docs/guides/maintenance.md` 新增写法要求：一句话说一件事，多个事项用列表，不用“／”串联多个对象，限定条件放入表格，中英文之间加空格。
+- Note 开头须记录授权方式和时间，`docs/guides/notes.md` 及 Note 示例同步。
+- Debug 与 Note 改为 `debug-NNN-主题.md`、`note-NNN-主题.md`，共用 `docs/notes/` 下的三位编号序列，编号唯一、稳定，不复用。
+- 删除“用户要求时另作归档”的规则，修改经过及整理前的原文统一由 Git 历史追溯；Debug 示例同步。
+- 已引入的项目升级时，替换 `AGENTS.md`、`docs/guides/maintenance.md`、`docs/guides/notes.md` 及示例；已有 Debug、Note 的编号方式经用户确认后再调整。
+
 ## [26.1127.1](https://github.com/keeshow/file-based-workflow/tree/26.1127.1)
 
 实际项目中，Handoff 增长到约 9000 字，Task 和 Debug 最长达到一万多字：同一排查过程在 Task、Handoff 和 Debug 中各写一遍，状态同时写在 Task、自建任务索引、Handoff 和文档导航中；Task 和 Debug 按测试轮次追加记录，用户暂缓的任务被记成 `BLOCKED` 或 `IN_PROGRESS`。原有规则只有“不写流水账”“单一事实来源”等原则，缺少各类文档的范围、整理时机和问题索引。
