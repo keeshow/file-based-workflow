@@ -2,7 +2,7 @@
 
 > 适用范围：本仓库。本文仅规定通用 Agent 开发工作流；项目专属约束统一放在 `docs/project-rules.md`。
 >
-> 工作流版本：26.1128.1，来源：https://github.com/keeshow/file-based-workflow
+> 工作流版本：26.1128.2，来源：https://github.com/keeshow/file-based-workflow
 
 ## 1. 基本原则
 

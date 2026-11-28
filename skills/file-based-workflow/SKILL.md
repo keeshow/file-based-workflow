@@ -45,6 +45,8 @@ description: 引入、安装、升级或检查“文件工作流”（全称“�
 3. 根据 `CHANGELOG.md`，列出项目版本之后的全部变更。
 4. 只更新来自工作流的通用文件：`AGENTS.md`、`docs/guides/`、`docs/examples/` 和 `docs/scripts/`。
    - `AGENTS.md` 可能有项目自行修改的内容。先下载项目原版本，与项目中的 `AGENTS.md` 比对，找出项目的修改，升级后保留这些修改。比对时忽略换行符差异（如 `diff --strip-trailing-cr`、`git diff --no-index --ignore-cr-at-eol`），否则可能误判为整个文件都被修改。
+   - 合并时以新版 `AGENTS.md` 为底，把项目的修改插回原位置。项目修改过的内容在新版中也有改动时，视为冲突，按第 6 步处理。
+   - 更新后的文件保持原文件的换行符风格，不混用 CRLF 和 LF。
 5. 不修改项目自有内容：`docs/handoff.md`（旧版本位于项目根目录的 `handoff.md`）、`docs/project-rules.md`、`docs/README.md`、`docs/tasks/`、`docs/notes/`、`docs/references/`。
 6. 以下情况先列出处理方案，等待用户决定：
    - 变更涉及文件移动或删除；
@@ -52,7 +54,8 @@ description: 引入、安装、升级或检查“文件工作流”（全称“�
    - 需要修改项目文档中的路径；
    - 新版内容与项目的修改冲突；
    - 已有文档不符合新版的命名或格式要求（如需要改名、改编号）。
-7. 报告升级前后的版本号，以及新增、修改、删除的文件。
+7. 升级后在项目根目录运行文档校验，命令和结果处理按升级后的 `docs/guides/check.md`。
+8. 报告升级前后的版本号，新增、修改、删除的文件，以及文档校验结果。
 
 ## 检查
 
