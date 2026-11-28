@@ -1,6 +1,6 @@
 # 文档校验
 
-> 首次运行 `docs/scripts/check-docs.py` 或结果异常时阅读。何时运行见 `AGENTS.md` 第 9 节，本文说明运行方式和结果处理。
+> 运行 `docs/scripts/check-docs.py` 的结果不是“通过”或无法运行时阅读。何时运行见 `AGENTS.md` 第 9 节，本文说明运行方式和结果处理。
 
 ## 运行
 

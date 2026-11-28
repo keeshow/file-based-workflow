@@ -1,5 +1,16 @@
 # 版本变更记录
 
+## [26.1128.1](https://github.com/keeshow/file-based-workflow/tree/26.1128.1)
+
+在空项目中测试完整流程（引入工作流、拆分 3 个 Task、由新对话依次接手完成）时，Agent 在几处规则未覆盖的情况上各自处理：用户同意更换验收环境后不知如何记录；只出现一次、无法复现的问题不知是否要建 Debug；Task 结项后的新发现无处可写；`.agent-local/` 涨到约 450 MB 未提醒用户。
+
+- 用户同意变更验收标准或环境时，在验收项中写明变更内容、同意时间和适用范围；长期适用的经用户确认后写入 `docs/project-rules.md`。
+- 只出现一次、无法复现且不影响验收的问题，记在 Task 遗留问题中，再次出现时再建 Debug。
+- Task 结项后的新发现，写入相关的进行中 Task、Debug 或 Handoff，并链接原 Task。
+- `.agent-local/` 总占用超过约 100 MB 时在报告中提醒；项目未约定测试脚本位置时也放在该目录。
+- 补充入口文件示例（Claude Code 在 `CLAUDE.md` 中写 `@AGENTS.md`）；`AGENTS.md` 第 9 节直接写出校验命令；用户另有报告格式时以用户为准；一次对话内完成的 Task 可从 `TODO` 直接改为 `DONE`。
+- 已引入的项目升级时，替换 `AGENTS.md` 和 `docs/guides/` 下的 `task.md`、`maintenance.md`、`check.md`。
+
 ## [26.1127.7](https://github.com/keeshow/file-based-workflow/tree/26.1127.7)
 
 引入和升级要复制 README 中的大段提示词，对不熟悉 Agent 的用户不友好；两段提示词与实际步骤分散维护，容易不一致。
